@@ -107,12 +107,12 @@ author:
   name             : "Seunggyu"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Studying on Communication engineering"
-  location         : "North Korea"
+  location         : "Somewhere"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-       url: "mailto:seunggyuh@gmail.com"
+       #url: "mailto:seunggyuh@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
