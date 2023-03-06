@@ -1,0 +1,162 @@
+# [2X1] STBC QPSK
+
+Created: 2023년 3월 6일 오후 10:49
+Created By: 응애
+Last Edited By: 응애
+Last Edited Time: 2023년 3월 6일 오후 10:52
+
+# [2X1] STBC QPSK
+
+```python
+import numpy as np
+import math
+from random import randrange
+from math import pi as PI
+```
+
+```python
+# QPSK modulation, demodulation function
+
+def QPSK_mod(Bit):
+
+  if len(Bit) != 2:
+    print("The number of bit isn't 2 !!")
+    raise
+
+  symbol=[]
+
+  if (Bit[0] == 0 and Bit[1] == 0):
+      symbol = complex(math.cos(PI/4), math.sin(PI/4))
+      
+  elif (Bit[0] == 0 and Bit[1] == 1):
+      symbol = complex(math.cos(3*PI/4), math.sin(3*PI/4))
+    
+  elif (Bit[0] == 1 and Bit[1] == 1):
+      symbol = complex(math.cos(-3*PI/4), math.sin(-3*PI/4))
+
+  else : # Bit[0] == 1 and Bit[1] == 0
+      symbol = complex(math.cos(-1*PI/4), math.sin(-1*PI/4))
+
+  return symbol
+
+def QPSK_demod(y):
+  y_Phase = math.atan2(y.imag, y.real)
+
+  if (y_Phase >= 0) and (y_Phase < PI/2):
+      Detected_Array = 0, 0
+
+  elif (y_Phase >= PI/2) and (y_Phase < PI):
+      Detected_Array = 0, 1
+
+  elif (y_Phase >= -1*PI) and (y_Phase < -1*PI/2):
+      Detected_Array = 1, 1
+
+  else: 
+      Detected_Array = 1, 0
+    
+  return Detected_Array
+```
+
+```python
+def STBC_2x1(Num_Bit, BER_start, BER_end, Error_limit, mod, demod):
+  Nt = 2                # The number of transmit antennas
+  Nr = 1                # The number of receive antenna
+  Num_Bit = Num_Bit     # It depends on what the modulation is
+  BER = []
+  BitPerNoiseDB_iter = range(BER_start, BER_end)     # Set the range of BER you wanna see
+
+  for BitPerNoiseDB in BitPerNoiseDB_iter:
+    SymbolPerNoiseRATIO = Num_Bit*10**(BitPerNoiseDB/10)    # It contains 'Num_Bit' number of bits per symbol, so we have to product Num_Bit
+    AWGN_sigma = math.sqrt(1/(2*SymbolPerNoiseRATIO))       # When the SymbolPerNoiseRATIO increases, the variance of AWGN decreases
+
+    Error_Count = 0
+    Total_Error_Count = 0
+    Bit_Count = 0
+
+    while Total_Error_Count < Error_limit:            # Set the limit number of error count. if you don't have an enough time to observe the result of the simulation,
+                                                      # you can reduce it. But to get more elaborate results, I recommand you to set the number at least more than 100.
+
+      ### ---------------------------------------------------------------- ###
+      ### Define some matrixs and arrays what we're gonna use at the below ###
+      Information_Generator = np.zeros([Num_Bit, Nt], dtype='int')
+      Detected_Array = np.zeros([Num_Bit, Nt], dtype='int')
+      Bit = np.zeros([Num_Bit, Nt], dtype='int')
+      symbol = []
+      AWGN = []
+      h = []
+      signal = np.zeros([2, 1], dtype='complex')
+      STBC_symbol = np.zeros([2, 2], dtype='complex')
+      h_matrix = np.zeros([2, 2], dtype='complex')
+      ### ---------------------------------------------------------------- ###
+
+      for a in range(0, Nt):
+        for generator in range(0, Num_Bit):
+          Information_Generator[a][generator] = randrange(2)    # Generate the information bits!! The value of bits has to be 0 or 1
+          
+      Bit = Information_Generator
+  
+
+  
+      for i in range(0, Nt):
+        symbol.append(QPSK_mod(Bit[i]))       # Modulate the Bits to symbols
+                                              # As you can see, you can change the type of modulation by changing the name of it
+
+      for i in range(0, Nt):
+        AWGN_gen = np.random.normal(size = (1,2))
+        AWGN.append(complex(AWGN_gen[0][0], AWGN_gen[0][1]) * AWGN_sigma)       # By producting AWGN_sigma with AWGN, we can adjust the size of AWGN 
+        h.append(np.random.randn(1)*np.sqrt(0.5) + 1j*np.random.randn(1)*np.sqrt(0.5))  # Rayleigh fading
+
+      h_matrix[0][0] = h[0]                   # For computing the process of demodulation of STBC, we have to have channel gain matrix (h_matrix)
+      h_matrix[0][1] = h[1]
+      h_matrix[1][0] = h[1].conjugate()
+      h_matrix[1][1] = -h[0].conjugate()
+
+   
+
+      STBC_symbol[0][0] = symbol[0]           # STBC Encoding
+      STBC_symbol[0][1] = symbol[1]
+      STBC_symbol[1][0] = -symbol[1].conjugate()
+      STBC_symbol[1][1] = symbol[0].conjugate()
+
+      STBC_symbol = STBC_symbol/np.sqrt(Nt)   # To make the energy of symbols one, devide the symbols by sqrt of the number of transmit antennas 
+      STBC_symbol = np.matmul(STBC_symbol, h)   # y = X*h
+
+      signal = STBC_symbol+AWGN                 # y = X*h + n ::: SHOTING!!! :::
+
+      #--------------Demodulation-------------#
+
+      signal[1] = signal[1].conjugate()
+      h_hermitian_mul_signal = np.matmul(h_matrix.conj().T,signal)
+
+      Detected_Array[0][0],Detected_Array[0][1] = QPSK_demod(h_hermitian_mul_signal[0][0]) 
+      Detected_Array[1][0],Detected_Array[1][1] = QPSK_demod(h_hermitian_mul_signal[1][0]) 
+
+      Error_Count = 0
+      
+      for row in range(0, Nt):
+        for col in range(0, Num_Bit):
+          if Bit[row][col] != Detected_Array[row][col]:       # Comparing the original bits from the transmitter and the detected bits at the receiver
+            Error_Count += 1                                  # If those are different each other, It means error
+
+    
+
+      Total_Error_Count += Error_Count
+      Bit_Count += Num_Bit*Nt
+
+    
+    BER.append(Total_Error_Count/Bit_Count)
+
+    print("Bit_Count :", Bit_Count)
+    print("Eb/N0 :{} [dB]".format(BitPerNoiseDB))
+    print("The number of bits with errors :", Total_Error_Count)
+    print("BER :", BER[BitPerNoiseDB-BER_start] )
+    print("---------------------------------")
+  
+  return BER
+```
+
+```python
+BER = STBC_2x1(2, 5, 23, 100, QPSK_mod, QPSK_demod)
+```
+
+![download.png](%5B2X1%5D%20STBC%20QPSK%20dc613db1600a40ba80ceea56502f015c/download.png)
