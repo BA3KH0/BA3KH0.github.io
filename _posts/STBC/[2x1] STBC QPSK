@@ -1,9 +1,8 @@
-# [2X1] STBC QPSK
-
-Created: 2023년 3월 6일 오후 10:49
-Created By: 응애
-Last Edited By: 응애
-Last Edited Time: 2023년 3월 6일 오후 10:52
+---
+title: "[2X1] STBC QPSK"
+categories: STBC
+layout: single
+---
 
 # [2X1] STBC QPSK
 
@@ -159,4 +158,3 @@ def STBC_2x1(Num_Bit, BER_start, BER_end, Error_limit, mod, demod):
 BER = STBC_2x1(2, 5, 23, 100, QPSK_mod, QPSK_demod)
 ```
 
-![download.png](%5B2X1%5D%20STBC%20QPSK%20dc613db1600a40ba80ceea56502f015c/download.png)
