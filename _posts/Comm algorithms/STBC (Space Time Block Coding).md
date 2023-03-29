@@ -24,10 +24,11 @@ STBC는 Alamouti가 1998년에 발표한 논문 ‘**[A simple transmit diversit
 
 ![Untitled](STBC%20(Space%20Time%20Block%20Coding)%20699d5ff9277541b2b90c9c8f9c3533eb/Untitled.png)
 
-이때 수신 안테나가 두 개의 송신 안테나로 부터 받은 신호 $y_1$  $y_2$는 다음과 같이 표현된다.
+이때 수신 안테나가 두 개의 송신 안테나로 부터 받은 신호 $y_1$,  $y_2$는 다음과 같이 표현된다.
 
 $$
-y_1 = x_1h_1+n_1\\y_2 = x_2h_2+n_2
+y_1 = x_1h_1+n_1
+y_2 = x_2h_2+n_2
 $$
 
 여기서 $x_1$과 $x_2$는 송신 안테나 Tx1, Tx2에서 각각 전송한 신호이며, $h_1$과 $h_2$는 레일리 페이딩이다. 또한, $n_1$과 $n_2$는 AWGN (Additive white gaussian noise)를 의미한다.
