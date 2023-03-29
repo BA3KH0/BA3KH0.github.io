@@ -168,7 +168,7 @@ $$\begin{align}
 $$
 
 Channel gain의 각 요소의 평균 크기가 1이라는 점을 주목하며 Decoding된 신호 
-$\frac{1}{||h_1||^2+||h_2||^2}$ $\begin{bmatrix}
+$\frac{1}{||h_1||^2+||h_2||^2}\begin{bmatrix}
   x_1 \\
   x_2 
 \end{bmatrix}$ 를 다시 생각해보자. $\frac{1}{||h_1||^2+||h_2||^2}$는 평균적으로 $\frac{1}{2}$이 되므로 Signal vector의 power를 절반 감소시킨다. 하지만 channel matrix가 AWGN에 곱해지며 noise power도 감소시키는 효과 또한 발생한다.
