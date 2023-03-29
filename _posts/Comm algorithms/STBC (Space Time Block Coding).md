@@ -159,11 +159,11 @@ Rayleigh fading은 위와 같이 실수부, 허수부로 분리되며, Rayleigh 
 Channel vector $h$는 Rayleigh distribution 특성 따라 다음이 성립한다.
 
 $$\begin{align}
-$E[|h|] = \frac{\sqrt\pi}{2} \\
-$Var[|h|]=1-\frac{\pi}{4} \\
-$Var[|h|]=E[|h|^2]-E[|h|]^2 \\
-$1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4} \\
-$E[|h|^2]=1
+&E[|h|] = \frac{\sqrt\pi}{2} \\
+&Var[|h|]=1-\frac{\pi}{4} \\
+&Var[|h|]=E[|h|^2]-E[|h|]^2 \\
+&1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4} \\
+&E[|h|^2]=1
 \end{align}
 $$
 
