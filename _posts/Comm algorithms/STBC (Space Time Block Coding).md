@@ -24,7 +24,7 @@ STBC는 Alamouti가 1998년에 발표한 논문 ‘**[A simple transmit diversit
 
 ![Untitled](STBC%20(Space%20Time%20Block%20Coding)%20699d5ff9277541b2b90c9c8f9c3533eb/Untitled.png)
 
-이때 수신 안테나가 두 개의 송신 안테나로 부터 받은 신호 $y_1$, $y_2$는 다음과 같이 표현된다.
+이때 수신 안테나가 두 개의 송신 안테나로 부터 받은 신호 $y_1$  $y_2$는 다음과 같이 표현된다.
 
 $$
 y_1 = x_1h_1+n_1\\y_2 = x_2h_2+n_2
