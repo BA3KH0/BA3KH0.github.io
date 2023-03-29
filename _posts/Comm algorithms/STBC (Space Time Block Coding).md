@@ -22,7 +22,8 @@ STBC는 Alamouti가 1998년에 발표한 논문 ‘**[A simple transmit diversit
 
 먼저 송신 안테나가 2개, 수신 안테나가 1개인 무선통신 환경을 가정해본다. 송신 안테나 개수가 여러개, 수신 안테나 개수가 한 개 이므로 이를 MISO (Multiple Input Single Output) system이라고 부른다. (MIMO system으로 칭해도 문제는 없다.)  이를 도식화하면 다음과 같이 나타낼 수 있다.
 
-![Untitled](STBC%20(Space%20Time%20Block%20Coding)%20699d5ff9277541b2b90c9c8f9c3533eb/Untitled.png)
+![Untitled (3)](https://user-images.githubusercontent.com/121854467/228436781-4a516af9-9929-46a5-9a22-ac722266c34c.png)
+
 
 이때 수신 안테나가 두 개의 송신 안테나로 부터 받은 신호 $y_1$,  $y_2$는 다음과 같이 표현된다.
 
@@ -168,7 +169,7 @@ $$\begin{align}
 $$
 
 Channel gain의 각 요소의 평균 크기가 1이라는 점을 주목하며 Decoding된 신호 
-$\frac{1}{||h_1||^2+||h_2||^2}\begin{bmatrix}
+$$\frac{1}{||h_1||^2+||h_2||^2}\begin{bmatrix}
   x_1 \\
   x_2 
-\end{bmatrix}$ 를 다시 생각해보자. $\frac{1}{||h_1||^2+||h_2||^2}$는 평균적으로 $\frac{1}{2}$이 되므로 Signal vector의 power를 절반 감소시킨다. 하지만 channel matrix가 AWGN에 곱해지며 noise power도 감소시키는 효과 또한 발생한다.
+\end{bmatrix}$$ 를 다시 생각해보자. $\frac{1}{||h_1||^2+||h_2||^2}$는 평균적으로 $\frac{1}{2}$이 되므로 Signal vector의 power를 절반 감소시킨다. 하지만 channel matrix가 AWGN에 곱해지며 noise power도 감소시키는 효과 또한 발생한다.
