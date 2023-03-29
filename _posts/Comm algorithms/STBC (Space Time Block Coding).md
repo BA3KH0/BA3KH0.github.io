@@ -12,7 +12,7 @@ STBC는 다중 안테나 시스템에서 데이터를 전송할 때, 두 개 이
 
 이러한 STBC 기술은 무선통신 분야에서 많이 활용되며, LTE나 Wi-Fi 등 다양한 무선통신 기술에서 적용되고 있다.
 
-STBC는 Alamouti가 1998년에 발표한 논문 ‘**[A simple transmit diversity technique for wireless communications](https://ieeexplore.ieee.org/abstract/document/730453/)’**에서 처음 발표되었으며, 현대 무선통신의 근간이 되는 기술이다.
+STBC는 Alamouti가 1998년에 발표한 논문 ‘**[A simple transmit diversity technique for wireless communications](https://ieeexplore.ieee.org/abstract/document/730453/)**’에서 처음 발표되었으며, 현대 무선통신의 근간이 되는 기술이다.
 
 **발표된 지 25년이 지났는데 아직도 사용될까?**
 
@@ -108,7 +108,7 @@ $y_2$에 conjugate를 취하면 위와 같이 channel matrix $H$가 information 
 
 바로 위 식의 양 변에 $H^H$를 곱한다.
 
-$$
+$$\begin{align}
 H^H\begin{bmatrix}
   y_1 \\
   y_2^* 
@@ -137,6 +137,7 @@ H^H\begin{bmatrix}
   n_1 \\
   n_2^* 
 \end{bmatrix}
+\end{align}
 $$
 
 Signal vector $x$에 곱해진 $\frac{1}{||h_1||^2+||h_2||^2}$는 상수이므로 신호의 정보를 훼손하지 않는다. 
@@ -147,7 +148,8 @@ Signal vector $x$에 곱해진 $\frac{1}{||h_1||^2+||h_2||^2}$는 상수이므�
 
 $$\begin{align}
 h=h_r+jh_i \\h_r, h_i\sim\mathcal{N}(0,\frac{1}{\sqrt{2}}^2)
-$$\end{align}
+\end{align}
+$$
 
 Rayleigh fading은 위와 같이 실수부, 허수부로 분리되며, Rayleigh distribution을 따른다.
 
@@ -155,6 +157,7 @@ Channel vector $h$는 Rayleigh distribution 특성 따라 다음이 성립한다
 
 $$\begin{align}
 E[|h|] = \frac{\sqrt\pi}{2}\\Var[|h|]=1-\frac{\pi}{4}\\Var[|h|]=E[|h|^2]-E[|h|]^2\\1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4}\\E[|h|^2]=1
-$$\end{align}
+\end{align}
+$$
 
 Channel gain의 각 요소의 평균 크기가 1이라는 점을 주목하며 Decoding된 신호 $\frac{1}{||h_1||^2+||h_2||^2}\begin{bmatrix}x_1 \\ x_2\end{bmatrix}$를 다시 생각해보자. $\frac{1}{||h_1||^2+||h_2||^2}$는 평균적으로 $\frac{1}{2}$이 되므로 Signal vector의 power를 절반 감소시킨다. 하지만 channel matrix가 AWGN에 곱해지며 noise power도 감소시키는 효과 또한 발생한다.
