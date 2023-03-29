@@ -38,12 +38,12 @@ $$
 
 Alamouti는 이처럼 여러 개의 안테나를 사용하는 경우 시공간 이득을 취하는 방법인 STBC를 제안하였으며, STBC encoding matrix는 다음과 같다
 
-$$
-
+$$ \begin{align}
 X = \begin{bmatrix}
   x_1 & x_2 \\
   -x_2^* & x_1^* 
 \end{bmatrix}
+\end{align}
 $$
 
 여기서, 행은 time slot의 index를 의미하며, 열은 하나의 Tx에서 두 time slot동안 전송한 데이터라고 볼 수 있다. 예를 들어 Tx1에서는 첫 번째 time에 $x_1$을 전송하며, 두 번째 time에 $-x_2^*$을 전송할 것이다. 
@@ -145,16 +145,16 @@ Signal vector $x$에 곱해진 $\frac{1}{||h_1||^2+||h_2||^2}$는 상수이므�
 
 좀 더 상세한 논의를 위해 Rayleigh fading을 살펴본다.
 
-$$
-h=h_r+jh_i\\h_r, h_i\sim\mathcal{N}(0,\frac{1}{\sqrt{2}}^2)
-$$
+$$\begin{align}
+h=h_r+jh_i \\h_r, h_i\sim\mathcal{N}(0,\frac{1}{\sqrt{2}}^2)
+$$\end{align}
 
 Rayleigh fading은 위와 같이 실수부, 허수부로 분리되며, Rayleigh distribution을 따른다.
 
 Channel vector $h$는 Rayleigh distribution 특성 따라 다음이 성립한다.
 
-$$
+$$\begin{align}
 E[|h|] = \frac{\sqrt\pi}{2}\\Var[|h|]=1-\frac{\pi}{4}\\Var[|h|]=E[|h|^2]-E[|h|]^2\\1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4}\\E[|h|^2]=1
-$$
+$$\end{align}
 
 Channel gain의 각 요소의 평균 크기가 1이라는 점을 주목하며 Decoding된 신호 $\frac{1}{||h_1||^2+||h_2||^2}\begin{bmatrix}x_1 \\ x_2\end{bmatrix}$를 다시 생각해보자. $\frac{1}{||h_1||^2+||h_2||^2}$는 평균적으로 $\frac{1}{2}$이 되므로 Signal vector의 power를 절반 감소시킨다. 하지만 channel matrix가 AWGN에 곱해지며 noise power도 감소시키는 효과 또한 발생한다.
