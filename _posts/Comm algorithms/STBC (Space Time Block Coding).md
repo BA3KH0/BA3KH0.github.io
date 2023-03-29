@@ -158,12 +158,13 @@ Rayleigh fading은 위와 같이 실수부, 허수부로 분리되며, Rayleigh 
 
 Channel vector $h$는 Rayleigh distribution 특성 따라 다음이 성립한다.
 
-$$
-E[|h|] = \frac{\sqrt\pi}{2} \\
-Var[|h|]=1-\frac{\pi}{4} \\
-Var[|h|]=E[|h|^2]-E[|h|]^2 \\
-1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4} \\
-E[|h|^2]=1
+$$\begin{align}
+$E[|h|] = \frac{\sqrt\pi}{2} \\
+$Var[|h|]=1-\frac{\pi}{4} \\
+$Var[|h|]=E[|h|^2]-E[|h|]^2 \\
+$1-\frac{\pi}{4}=E[|h|^2]-\frac{\pi}{4} \\
+$E[|h|^2]=1
+\end{align}
 $$
 
 Channel gain의 각 요소의 평균 크기가 1이라는 점을 주목하며 Decoding된 신호 
