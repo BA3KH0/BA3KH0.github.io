@@ -1,10 +1,5 @@
 # STBC (Space Time Block Coding)
 
-Created: 2023년 3월 28일 오후 5:13
-Created By: 응애
-Last Edited By: 응애
-Last Edited Time: 2023년 3월 29일 오후 2:11
-
 # STBC 가 뭐냐?
 
 킹갓 chat GPT의 대답 
