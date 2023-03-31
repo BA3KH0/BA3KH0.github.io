@@ -1,9 +1,13 @@
-# STBC (Space Time Block Coding)
+---
+title: "무선통신 알고리즘 13333 - STBC"
+categories: Comm_algorithms
+use_math: true
+layout: single
+---
 
-Created: 2023년 3월 28일 오후 5:13
-Created By: 응애
-Last Edited By: 응애
-Last Edited Time: 2023년 3월 29일 오후 2:11
+
+# 무선통신 알고리즘 1 - STBC (Space Time Block Coding)
+
 
 # STBC 가 뭐냐?
 
