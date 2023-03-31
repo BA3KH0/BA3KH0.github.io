@@ -190,7 +190,7 @@ encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
-# Conversion
+# Math equation
 markdown: kramdown
 highlighter: rouge
 lsi: false
